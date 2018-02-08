@@ -1,0 +1,29 @@
+{
+  "name": "nodebb-plugin-batch-posts",
+  "version": "0.2.3",
+  "description": "A starter kit for quickly creating NodeBB plugins",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psychobunny/nodebb-plugin-batch-posts"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "batch",
+    "posting",
+    "email"
+  ],
+  "author": {
+    "name": "psychobunny",
+    "email": "psycho.bunny@hotmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psychobunny/nodebb-plugin-batch-posts/issues"
+  },
+  "readmeFilename": "README.md",
+  "nbbpm": {
+    "compatibility": "^1.0.0"
+  }
+}
