@@ -1,15 +1,15 @@
 'use strict';
 
-/* globals $, app, socket, define */
+/* globals $, app, socket, define, ajaxify */
 
-define('admin/plugins/batch-posts', ['settings'], function (Settings) {
+define('admin/plugins/batch-posts', ['settings', 'categorySelector'], function (settings, categorySelector) {
 	var ACP = {};
 
 	ACP.init = function () {
-		Settings.load('batch-posts', $('.batch-posts-settings'));
+		settings.load('batch-posts', $('.batch-posts-settings'));
 
 		$('#save').on('click', function () {
-			Settings.save('batch-posts', $('.batch-posts-settings'), function () {
+			settings.save('batch-posts', $('.batch-posts-settings'), function () {
 				app.alert({
 					type: 'success',
 					alert_id: 'batch-posts-saved',
@@ -19,6 +19,23 @@ define('admin/plugins/batch-posts', ['settings'], function (Settings) {
 						socket.emit('admin.reload');
 					},
 				});
+			});
+		});
+
+		categorySelector.init($('[component="category-selector"]'));
+		var categories = ajaxify.data.allCategories;
+		if (categories.length) {
+			categorySelector.selectCategory(categories[0].cid);
+		}
+
+		$('#batchPost').on('click', function () {
+			socket.emit('admin.plugins.batchPosts.post', { batch: $('#batchData').val(), category: categorySelector.getSelectedCategory() }, function (err) {
+				if (err) {
+					return app.alertError(err);
+				}
+
+				app.alertSuccess('Successfully posted topics.');
+				ajaxify.refresh();
 			});
 		});
 	};
