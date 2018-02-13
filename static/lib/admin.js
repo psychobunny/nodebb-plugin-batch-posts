@@ -80,7 +80,7 @@ define('admin/plugins/batch-posts', ['settings', 'categorySelector'], function (
 			var bar = $('.progress-bar');
 			var postBtn = $('#batchPost');
 
-			if (!parseInt(data.working, 10)) {
+			if (!data || !parseInt(data.working, 10)) {
 				postBtn.removeAttr('disabled').text('Create Topics');
 				bar.css('width', '100%');
 			} else {
