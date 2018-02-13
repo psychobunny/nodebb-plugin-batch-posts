@@ -32,6 +32,9 @@ Article 2 goes here
 
 Article 3 goes here
 				</textarea>
+				<div class="progress">
+					<div class="progress-bar reset" role="progressbar" style="width: 100%"></div>
+				</div>
 				<div component="category-selector" class="btn-group">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 						<span component="category-selector-selected">[[topic:thread_tools.select_category]]</span> <span class="caret"></span>
@@ -45,10 +48,13 @@ Article 3 goes here
 					</ul>
 				</div>
 				<button type="button" id="batchPost" class="btn btn-primary">Create Topics</button>
+				<button type="button" id="stopPosting" class="btn btn-warning">Stop</button>
+				<br /><br />
+
+				<div class="faultyPosts hide">
+					<div class="alert alert-danger">Error: unable to post the following topics:</div>
+					<textarea id="faultyPosts" class="formcontrol"></textarea>
+				</div>
 			</div>
 		</div>
 	</form>
-	
-	<button id="save" class="floating-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-		<i class="material-icons">save</i>
-	</button>
