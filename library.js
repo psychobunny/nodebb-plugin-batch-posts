@@ -42,11 +42,13 @@ plugin.onEmailReceive = (data, callback) => {
 	if (cid && cid.length && cid[1] && email && text) {
 		user.getUidByEmail(email, function (err, uid) {
 			if (err) {
+				res.sendStatus(200);
 				return callback(err);
 			}
 
 			batch.parseBatchAndPost(uid, cid[1], text, function (err, data) {
 				if (err || data.faultyPosts) {
+					res.sendStatus(200);
 					return handleEmailError((err || '') + data.faultyPosts.replace(/\n/g, '<br />'), email, subject);
 				}
 
